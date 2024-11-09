@@ -9,6 +9,7 @@ import {
 } from "@/constants";
 
 import Header from "@/components/Header";
+import RespectMotionPreferences from "@/components/RespectMotionPreferences";
 import Footer from "@/components/Footer";
 import "./styles.css";
 
@@ -46,7 +47,9 @@ function RootLayout({ children }) {
     >
       <body>
         <Header theme={theme} />
-        <main>{children}</main>
+        <main>
+          <RespectMotionPreferences>{children}</RespectMotionPreferences>
+        </main>
         <Footer />
       </body>
     </html>
