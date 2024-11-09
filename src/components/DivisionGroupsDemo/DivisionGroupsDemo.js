@@ -20,6 +20,8 @@ function DivisionGroupsDemo({
 
   const [numOfGroups, setNumOfGroups] = useState(initialNumOfGroups);
 
+  const items = range(numOfItems);
+
   const numOfItemsPerGroup = Math.floor(numOfItems / numOfGroups);
 
   const remainder = includeRemainderArea ? numOfItems % numOfGroups : null;
@@ -55,17 +57,22 @@ function DivisionGroupsDemo({
           <div className={clsx(styles.demoArea)} style={gridStructure}>
             {range(numOfGroups).map((groupIndex) => (
               <div key={groupIndex} className={styles.group}>
-                {range(numOfItemsPerGroup).map((index) => {
-                  const itemId = `${id}-${groupIndex}-${index}`;
+                {items
+                  .slice(
+                    groupIndex * numOfItemsPerGroup,
+                    groupIndex * numOfItemsPerGroup + numOfItemsPerGroup
+                  )
+                  .map((index) => {
+                    const itemId = `${id}-${index}`;
 
-                  return (
-                    <motion.div
-                      key={itemId}
-                      layoutId={itemId}
-                      className={styles.item}
-                    />
-                  );
-                })}
+                    return (
+                      <motion.div
+                        key={itemId}
+                        layoutId={itemId}
+                        className={styles.item}
+                      />
+                    );
+                  })}
               </div>
             ))}
           </div>
@@ -76,9 +83,20 @@ function DivisionGroupsDemo({
           <div className={styles.remainderArea}>
             <p className={styles.remainderHeading}>Remainder Area</p>
 
-            {range(remainder).map((index) => {
-              return <div key={index} className={styles.item} />;
-            })}
+            {items
+              .toReversed()
+              .slice(0, remainder)
+              .map((index) => {
+                const itemId = `${id}-${index}`;
+
+                return (
+                  <motion.div
+                    key={itemId}
+                    layoutId={itemId}
+                    className={styles.item}
+                  />
+                );
+              })}
           </div>
         )}
 
