@@ -1,15 +1,8 @@
-import dynamic from "next/dynamic";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 import { loadBlogPost } from "@/helpers/file-helpers";
 import BlogHero from "@/components/BlogHero";
-import CodeSnippet from "@/components/CodeSnippet";
-import Spinner from "@/components/Spinner";
-
-const DivisionGroupsDemo = dynamic(
-  () => import("@/components/DivisionGroupsDemo"),
-  { loading: Spinner }
-);
+import COMPONENTS from "@/helpers/mdx-components";
 
 import styles from "./postSlug.module.css";
 
@@ -34,13 +27,7 @@ async function BlogPost({ params }) {
         publishedOn={frontmatter.publishedOn}
       />
       <div className={styles.page}>
-        <MDXRemote
-          source={content}
-          components={{
-            pre: CodeSnippet,
-            DivisionGroupsDemo,
-          }}
-        />
+        <MDXRemote source={content} components={COMPONENTS} />
       </div>
     </article>
   );
