@@ -76,7 +76,6 @@ function DivisionGroupsDemo({
               </div>
             ))}
           </div>
-          itemId
         </div>
 
         {includeRemainderArea && (
