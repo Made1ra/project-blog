@@ -7,7 +7,7 @@ import VisuallyHidden from "@/components/VisuallyHidden";
 
 import styles from "./Header.module.css";
 
-function Header({ theme, className, ...delegated }) {
+function Header({ initialTheme, className, ...delegated }) {
   return (
     <header className={clsx(styles.wrapper, className)} {...delegated}>
       <Logo />
@@ -23,7 +23,10 @@ function Header({ theme, className, ...delegated }) {
           />
           <VisuallyHidden>View RSS feed</VisuallyHidden>
         </button>
-        <DarkLightToggle initialTheme={theme} className={styles.action} />
+        <DarkLightToggle
+          initialTheme={initialTheme}
+          className={styles.action}
+        />
       </div>
     </header>
   );

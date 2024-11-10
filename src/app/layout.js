@@ -37,17 +37,17 @@ export const metadata = {
 
 function RootLayout({ children }) {
   const savedTheme = cookies().get("color-theme");
-  const theme = savedTheme?.value || "dark";
+  const initialTheme = savedTheme?.value || "dark";
 
   return (
     <html
       lang="en"
       className={clsx(mainFont.variable, monoFont.variable)}
-      data-color-theme={theme}
-      style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
+      data-color-theme={initialTheme}
+      style={initialTheme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
     >
       <body>
-        <Header theme={theme} />
+        <Header initialTheme={initialTheme} />
         <main>
           <RespectMotionPreferences>{children}</RespectMotionPreferences>
         </main>
