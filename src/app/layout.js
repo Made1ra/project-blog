@@ -5,6 +5,7 @@ import clsx from "clsx";
 import {
   BLOG_TITLE,
   BLOG_DESCRIPTION,
+  COLOR_THEME_COOKIE_NAME,
   LIGHT_TOKENS,
   DARK_TOKENS,
 } from "@/constants";
@@ -36,7 +37,7 @@ export const metadata = {
 };
 
 function RootLayout({ children }) {
-  const savedTheme = cookies().get("color-theme");
+  const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME);
   const initialTheme = savedTheme?.value || "dark";
 
   return (
