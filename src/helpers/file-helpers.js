@@ -23,11 +23,14 @@ export async function getBlogPostList() {
 }
 
 export const loadBlogPost = cache(async (slug) => {
-  const rawContent = await readFile(`/content/${slug}.mdx`);
+  try {
+    const rawContent = await readFile(`/content/${slug}.mdx`);
+    const { data: frontmatter, content } = matter(rawContent);
 
-  const { data: frontmatter, content } = matter(rawContent);
-
-  return { frontmatter, content };
+    return { frontmatter, content };
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 function readFile(localPath) {
