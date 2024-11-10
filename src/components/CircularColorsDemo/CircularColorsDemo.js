@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import { Play, Pause, RotateCcw } from "react-feather";
 
-import useToggle from "@/app/hooks/use-toggle";
+import useToggle from "@/hooks/use-toggle";
 import Card from "@/components/Card";
 import VisuallyHidden from "@/components/VisuallyHidden";
 
