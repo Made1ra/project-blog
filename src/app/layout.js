@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { Work_Sans, Spline_Sans_Mono } from "next/font/google";
 import clsx from "clsx";
 
@@ -35,8 +36,8 @@ export const metadata = {
 };
 
 function RootLayout({ children }) {
-  // TODO: Dynamic theme depending on user preference
-  const theme = "light";
+  const savedTheme = cookies().get("color-theme");
+  const theme = savedTheme?.value || "light";
 
   return (
     <html
